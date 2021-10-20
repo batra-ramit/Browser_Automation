@@ -42,4 +42,5 @@ async function run() {
 
   await page.waitForSelector("button[data-analytics='LoginPassword']");
   await page.click("button[data-analytics='LoginPassword']");
+  
 }

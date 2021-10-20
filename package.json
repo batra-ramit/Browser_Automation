@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/batra-ramit/Browser_Automation#readme",
   "dependencies": {
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "puppeteer": "^10.4.0"
   }
 }
