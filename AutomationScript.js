@@ -43,4 +43,13 @@ async function run() {
   await page.waitForSelector("button[data-analytics='LoginPassword']");
   await page.click("button[data-analytics='LoginPassword']");
   
+  await page.waitForSelector("a[href='/contests']");
+  await page.click("a[href='/contests']");
+
+  await page.waitForSelector("a[href='/administration/contests/']");
+  await page.click("a[href='/administration/contests/']");
+
+  
+  console.log("over");
 }
+
