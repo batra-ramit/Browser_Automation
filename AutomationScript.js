@@ -50,6 +50,28 @@ async function run() {
   await page.click("a[href='/administration/contests/']");
 
   
+
+
   console.log("over");
 }
 
+async function handleContest(browser, page, contesturl) {
+  
+  let npage = await browser.newPage();
+  await npage.goto(args.url + contesturl);
+
+  await npage.waitFor(2000);
+
+  await npage.waitForSelector("li[data-tab='moderators']");
+  await npage.click("li[data-tab='moderators']");
+
+
+  await npage.waitForSelector("input#moderator");
+  await npage.type("input#moderator", configJSO.moderator, {delay: 50});
+  
+  await npage.keyboard.press("Enter");
+  await npage.waitFor(2000);
+  await npage.close();
+  await page.waitFor(2000);
+
+}
