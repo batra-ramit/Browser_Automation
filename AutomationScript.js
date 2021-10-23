@@ -1,4 +1,4 @@
-// node AutomationScript.js --url="https://www.hackerrank.com/" --config=config.json
+// node AutomationScript.js --url="https://www.hackerrank.com" --config=config.json
 // npm init -y
 // npm install minimist
 // npm install puppeteer
@@ -49,9 +49,28 @@ async function run() {
   await page.waitForSelector("a[href='/administration/contests/']");
   await page.click("a[href='/administration/contests/']");
 
-  
+  await page.waitForSelector("a[data-attr1='Last']");
+  let totalpages=await page.$eval("a[data-attr1='Last']",function (lastpage) {
+    let totpages = parseInt(lastpage.getAttribute("data-page"));
+    return totpages;
+  });
 
-
+  for (let i = 0; i < totalpages; i++){
+    
+    await page.waitForSelector(" a.backbone.block-center");
+    let contestURLS = await page.$$eval(" a.backbone.block-center", function (atags) {
+      let urls = [];
+      for (let i = 0; i < atags.length; i++){
+        let url = atags[i].getAttribute('href');
+        urls.push(url);
+        
+      }
+      return urls;
+    })
+    console.log(contestURLS);
+        await page.waitForSelector("a[data-attr1='Right']");
+        await page.click("a[data-attr1='Right']");
+  }
   console.log("over");
 }
 
